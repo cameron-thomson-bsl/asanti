@@ -16,26 +16,13 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
-    runs-on: ubuntu-latest
-    # Run if Dependabot triggered the initial workflow run.
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    steps:
-      # Fetch the Dependabot metadata that describes the updated dependencies.
-      - name: Fetch Dependabot metadata
-        # Specify the ID used to access the output of this step.
-        id: metadata
-        # Specify that this step will run the `dependabot/fetch-metadata` action.
-        uses: dependabot/fetch-metadata@v1
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Enable auto-merge for Dependabot PRs
-        # Auto-merge dependencies only for patch and minor updates.
-        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'}}
-        # Merge the PR automatically once all status checks have passed.
-        # NOTE: To ensure no breaking changes are merged, the `Require status checks to pass
-        # before merging` option should be enabled in the branch protection rules.
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  call-dependabot-auto-merge-workflow:
+    uses: cameron-thomson-bsl/github-workflows/.github/workflows/dependabot-auto-merge.yml
+    with:
+      unit-tests-workflow-ref: cameron-thomson-bsl/asanti/.github/test.yml
+      pr_url: ${{ github.event.pull_request.html_url }}
+    # Since all of our workflows are called from the same organisation, we can use the `inherit`
+    # keyword to pass secrets to the called workflow.
+    # See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsecretsinherit
+    secrets: inherit
+    
