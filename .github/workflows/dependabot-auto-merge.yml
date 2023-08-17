@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   call-dependabot-auto-merge-workflow:
-    uses: cameron-thomson-bsl/github-workflows/.github/workflows/dependabot-auto-merge.yml@0.1.0
+    uses: cameron-thomson-bsl/github-workflows/.github/workflows/dependabot-auto-merge.yml@devlop
     with:
       unit-tests-workflow-ref: cameron-thomson-bsl/asanti/.github/test.yml@develop
       pr-url: ${{ github.event.pull_request.html_url }}
