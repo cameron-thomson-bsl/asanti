@@ -1,7 +1,6 @@
 ##
- # Dependabot auto-merge config for merging patch and minor updates.
- #
- # Based on https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#enable-auto-merge-on-a-pull-request
+ # Dependabot auto-merge workflow for merging patch and minor updates after unit
+ # tests succeed.
  # ______________________________________________________________________________
  #
  # Maintained by brightSPARK Labs.
@@ -16,10 +15,14 @@ permissions:
   pull-requests: write
 
 jobs:
+  call-test-gradle-build-workflow:
+    uses: cameron-thomson-bsl/github-workflows/.github/workflows/test-gradle-build.yml@develop
   call-dependabot-auto-merge-workflow:
+    # Specify that this job should only run if the unit tests job succeeds.
+    # See https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow#defining-prerequisite-jobs
+    needs: call-test-gradle-build-workflow
     uses: cameron-thomson-bsl/github-workflows/.github/workflows/dependabot-auto-merge.yml@develop
     with:
-      unit-tests-workflow-ref: cameron-thomson-bsl/asanti/.github/workflows/test.yml
       pr-url: ${{ github.event.pull_request.html_url }}
     # Since all of our workflows are called from the same organisation, we can use the `inherit`
     # keyword to pass secrets to the called workflow.
