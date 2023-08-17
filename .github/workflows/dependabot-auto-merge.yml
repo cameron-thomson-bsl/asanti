@@ -19,7 +19,7 @@ jobs:
   call-dependabot-auto-merge-workflow:
     uses: cameron-thomson-bsl/github-workflows/.github/workflows/dependabot-auto-merge.yml@develop
     with:
-      unit-tests-workflow-ref: cameron-thomson-bsl/asanti/.github/test.yml@develop
+      unit-tests-workflow-ref: cameron-thomson-bsl/asanti/.github/test.yml@0.1.0
       pr-url: ${{ github.event.pull_request.html_url }}
     # Since all of our workflows are called from the same organisation, we can use the `inherit`
     # keyword to pass secrets to the called workflow.
