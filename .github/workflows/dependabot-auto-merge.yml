@@ -15,12 +15,12 @@ permissions:
   pull-requests: write
 
 jobs:
-  call-test-gradle-build-workflow:
-    uses: cameron-thomson-bsl/github-workflows/.github/workflows/test-gradle-build.yml@develop
+  call-test-workflow:
+    uses: .github/workflows/test.yml
   call-dependabot-auto-merge-workflow:
     # Specify that this job should only run if the unit tests job succeeds.
     # See https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow#defining-prerequisite-jobs
-    needs: call-test-gradle-build-workflow
+    needs: call-test-workflow
     uses: cameron-thomson-bsl/github-workflows/.github/workflows/dependabot-auto-merge.yml@develop
     with:
       pr-url: ${{ github.event.pull_request.html_url }}
