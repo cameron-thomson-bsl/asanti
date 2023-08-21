@@ -11,8 +11,7 @@
  # www.brightsparklabs.com
  ##
 
-name: Asanti build with gradle
-
+name: Asanti build with Gradle
 on:
   # Call workflow on push.
   push:
@@ -21,4 +20,6 @@ on:
 
 jobs:
   call-test-gradle-build-workflow:
-    uses: cameron-thomson-bsl/github-workflows/.github/workflows/test-gradle-build.yml@develop
+    uses: brightsparklabs/github-actions/.github/workflows/test-gradle-build.yml@feature/RAD-184-create-repo-for-reusable-github-workflows
+    with:
+      github-ref-name: ${GITHUB_REF_NAME}
