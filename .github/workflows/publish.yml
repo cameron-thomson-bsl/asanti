@@ -21,7 +21,7 @@ jobs:
     # Specify that this job should only run if the unit tests job succeeds.
     # See https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow#defining-prerequisite-jobs
     needs: call-test-workflow
-    uses: brightsparklabs/github-actions/.github/workflows/publish-to-maven-central.yml@feature/RAD-184-create-repo-for-reusable-github-workflows
+    uses: brightsparklabs/github-actions/.github/workflows/publish-to-maven-central.yml@0.1.0
     with:
       github-ref-name: ${GITHUB_REF_NAME}
     secrets: inherit
