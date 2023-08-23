@@ -6,12 +6,16 @@
  # www.brightsparklabs.com
  ##
 
-name: Standard Workflow
+name: Workflow
 on: [push, pull_request]
 
 jobs:
   # Run tests.
   call-test-gradle-build-workflow:
+    # Prevent unnecessary duplicate test runs.
+    if: |
+      (github.event_name == 'push' && github.actor != 'dependabot[bot]') ||
+      (github.event_name == 'pull_request' && github.actor == 'dependabot[bot]')
     strategy:
       matrix:
         # Tests for Asanti are run on both Ubuntu and Windows.
