@@ -31,6 +31,10 @@ jobs:
     if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
     # Specify that this job should only run if the test job succeeds.
     needs: call-test-gradle-build-workflow
+    # These permissions are required for Dependabot to merge the PR.
+    permissions:
+      contents: write
+      pull-requests: write
     uses: brightsparklabs/github-actions/.github/workflows/dependabot-auto-merge.yml@0.1.0
     with:
       pr-url: ${{ github.event.pull_request.html_url }}
