@@ -6,7 +6,7 @@
  # www.brightsparklabs.com
  ##
 
-name: Standard Workflow
+name: Workflow
 on: [push, pull_request]
 
 jobs:
