@@ -6,7 +6,7 @@
  # www.brightsparklabs.com
  ##
 
-name: Test pushed changes
+name: Test Pushed Changes
 on:
   # Call workflow on push to any branch that's not the `master` branch.
   # Tests are run for the `master` branch in the `publish.yml` workflow.

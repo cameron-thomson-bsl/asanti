@@ -7,7 +7,7 @@
  # www.brightsparklabs.com
  ##
 
-name: Dependabot test and auto-merge
+name: Dependabot Test and Auto-Merge
 on: pull_request
 
 permissions:
