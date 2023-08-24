@@ -1,0 +1,18 @@
+##
+ # Java workflow to automate testing, dependency patching, and release
+ # publishing.
+ # ______________________________________________________________________________
+ #
+ # Maintained by brightSPARK Labs.
+ # www.brightsparklabs.com
+ ##
+
+name: Java Workflow
+on: [push, pull_request]
+
+jobs:
+  call-java-workflow:
+    uses: brightsparklabs/github-actions/.github/workflows/java.yml@0.2.0
+    with:
+      # Tests for Asanti are run on both Ubuntu and Windows.
+      os: '["ubuntu-latest", "windows-latest"]'
