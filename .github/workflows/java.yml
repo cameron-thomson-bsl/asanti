@@ -13,9 +13,6 @@ on: [push, pull_request]
 jobs:
   call-java-workflow:
     uses: brightsparklabs/github-actions/.github/workflows/java.yml@feature/RAD-180-fix-dependabot-auto-merge-for-asanti
-    with:
-      # Tests for Asanti are run on both Ubuntu and Windows.
-      os: '["ubuntu-latest", "windows-latest"]'
     secrets: inherit
     # These permissions are required for Dependabot to merge PRs.
     permissions:
