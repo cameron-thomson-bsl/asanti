@@ -17,3 +17,7 @@ jobs:
       # Tests for Asanti are run on both Ubuntu and Windows.
       os: '["ubuntu-latest", "windows-latest"]'
     secrets: inherit
+    # These permissions are required for Dependabot to merge PRs.
+    permissions:
+      contents: write
+      pull-requests: write
